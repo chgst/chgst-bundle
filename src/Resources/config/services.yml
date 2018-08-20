@@ -1,4 +1,5 @@
 services:
 
     Changeset\Communication\CommandBusInterface:
+        public: true
         class: Changeset\Communication\InMemoryCommandBus
