@@ -1,0 +1,15 @@
+suites:
+    default:
+        namespace: Changeset\ChangesetBundle
+        psr4_prefix: Changeset\ChangesetBundle
+
+extensions:
+  LeanPHP\PhpSpec\CodeCoverage\CodeCoverageExtension:
+    blacklist: [ 'spec', 'vendor' ]
+    format:
+      - clover
+      - html
+
+    output:
+      clover: build/logs/clover.xml
+      html: build/coverage
