@@ -1,0 +1,4 @@
+services:
+
+    Changeset\Communication\CommandBusInterface:
+        class: Changeset\Communication\InMemoryCommandBus
