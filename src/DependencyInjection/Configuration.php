@@ -11,7 +11,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
 
-        $rootNode = $treeBuilder->root('chgst_bundle');
+        $rootNode = $treeBuilder->root('changeset');
 
         $rootNode
             ->children()

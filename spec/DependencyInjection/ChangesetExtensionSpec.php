@@ -17,6 +17,6 @@ class ChangesetExtensionSpec extends ObjectBehavior
 
     function it_processes_configuration(ContainerBuilder $container)
     {
-        $this->load(['chgst_bundle' => ['event_repository' => '@defined']], $container);
+        $this->load(['changeset' => ['event_repository' => '@defined']], $container);
     }
 }
