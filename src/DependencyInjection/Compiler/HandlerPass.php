@@ -19,9 +19,7 @@ class HandlerPass implements CompilerPassInterface
 
         foreach ($taggedServices as $id => $tags)
         {
-            $ref = new Reference($id);
-
-            $definition->addMethodCall('addHandler', array($ref));
+            $definition->addMethodCall('addHandler', [ new Reference($id) ]);
 
             $container
                 ->findDefinition($id)
