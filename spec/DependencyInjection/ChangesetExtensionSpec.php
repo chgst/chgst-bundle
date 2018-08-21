@@ -20,7 +20,8 @@ class ChangesetExtensionSpec extends ObjectBehavior
     {
         $container->fileExists(Argument::any())->willReturn(true);
         $container->setDefinition(Argument::any(), Argument::any())->shouldBeCalled();
+        $container->setAlias(Argument::any(), Argument::any())->shouldBeCalled();
 
-        $this->load(['changeset' => ['event_repository' => '@defined']], $container);
+        $this->load([ ['event_repository' => '@defined'] ], $container);
     }
 }

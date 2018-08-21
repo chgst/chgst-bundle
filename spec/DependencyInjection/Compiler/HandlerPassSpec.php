@@ -23,12 +23,12 @@ class HandlerPassSpec extends ObjectBehavior
 
 
         $builder->has(CommandBusInterface::class)->willReturn(true);
-        $builder->findDefinition(CommandBusInterface::class)->willReturn($definition);
+        $builder->findDefinition(Argument::any())->willReturn($definition);
 
         $services = [ 'someId' => [ ['event' => 'some.event' ]]];
 
         $builder->findTaggedServiceIds('changeset.command.handler')->willReturn($services);
-        $definition->addMethodCall('addHandler', Argument::any())->shouldBeCalled();
+        $definition->addMethodCall(Argument::any(), Argument::any())->shouldBeCalled();
         $this->process($builder);
     }
 }
