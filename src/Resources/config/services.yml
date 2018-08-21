@@ -6,5 +6,6 @@ services:
 
     Changeset\Communication\EventBusInterface:
         public: true
+        autowire: true
         class: Changeset\Communication\InMemoryEventBus
 
