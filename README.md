@@ -35,7 +35,7 @@ class AppKernel extends Kernel
 ```yaml
 #app/config/config.yml
 
-chgst_bundle:
+changeset:
     event_repository: '@your.prefered.implementation'
 
 ```
