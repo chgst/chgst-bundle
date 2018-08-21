@@ -3,3 +3,8 @@ services:
     Changeset\Communication\CommandBusInterface:
         public: true
         class: Changeset\Communication\InMemoryCommandBus
+
+    Changeset\Communication\EventBusInterface:
+        public: true
+        class: Changeset\Communication\InMemoryEventBus
+

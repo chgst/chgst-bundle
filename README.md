@@ -38,7 +38,8 @@ Set your event repository service for persisting events to data store
 #app/config/config.yml
 
 changeset:
-    event_repository: '@your.prefered.implementation'
+    event_repository: '@your.preferred.implementation'
+    event_bus: '@your.preferred.event_bus.implementation'
 
 ```
 

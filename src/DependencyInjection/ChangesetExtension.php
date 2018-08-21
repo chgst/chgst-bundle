@@ -13,11 +13,11 @@ class ChangesetExtension extends Extension
     {
         $this->processConfiguration(new Configuration(), $configs);
 
-        $id = $configs[0]['event_repository'];
-
-        if(strpos(trim($id), '@') == 0) $id = substr($id, 1);
-
-        $container->setAlias('changeset.event_repository', $id);
+        foreach($configs[0] as $key => $id)
+        {
+            if(strpos(trim($id), '@') == 0) $id = substr($id, 1);
+            $container->setAlias(sprintf('changeset.%s', $key), $id);
+        }
 
         $loader = new Loader\YamlFileLoader(
             $container,
