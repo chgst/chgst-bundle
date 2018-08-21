@@ -32,10 +32,26 @@ class AppKernel extends Kernel
 
 ## Configuration
 
+Set your event repository service for persisting events to data store
+
 ```yaml
 #app/config/config.yml
 
 changeset:
     event_repository: '@your.prefered.implementation'
 
+```
+
+Wire your command handlers
+
+```yaml
+#app/config/services.yml
+
+services:
+
+  AppBundle\Command\Handler\:
+    resource: '%kernel.root_dir%/../src/AppBundle/Command/Handler'
+    public: true
+    autowire: true
+    tags: [ 'changeset.command.handler' ]
 ```
