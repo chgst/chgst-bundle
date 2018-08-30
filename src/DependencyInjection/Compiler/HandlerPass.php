@@ -16,16 +16,6 @@ class HandlerPass implements CompilerPassInterface
         $definition = $container->findDefinition(CommandBusInterface::class);
 
         $definition->addMethodCall('setEventBus', [ new Reference('changeset.event_bus' )]);
-
-        $taggedServices = $container->findTaggedServiceIds('changeset.command.handler');
-
-        foreach ($taggedServices as $id => $tags)
-        {
-            $definition->addMethodCall('addHandler', [ new Reference($id) ]);
-
-            $container
-                ->findDefinition($id)
-                ->addMethodCall('setRepository', [ new Reference('changeset.event_repository') ]);
-        }
+        $definition->addMethodCall('setHandler', [ new Reference('changeset.command_handler' )]);
     }
 }

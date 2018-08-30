@@ -11,13 +11,7 @@ class ChangesetExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
-        $this->processConfiguration(new Configuration(), $configs);
-
-        foreach($configs[0] as $key => $id)
-        {
-            if(strpos(trim($id), '@') == 0) $id = substr($id, 1);
-            $container->setAlias(sprintf('changeset.%s', $key), $id);
-        }
+        $config = $this->processConfiguration(new Configuration(), $configs);
 
         $loader = new Loader\YamlFileLoader(
             $container,
@@ -25,5 +19,11 @@ class ChangesetExtension extends Extension
         );
 
         $loader->load('services.yml');
+
+        foreach($config as $key => $id)
+        {
+            if(strpos(trim($id), '@') == 0) $id = substr($id, 1);
+            $container->setAlias(sprintf('changeset.%s', $key), $id);
+        }
     }
 }

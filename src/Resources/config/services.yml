@@ -1,8 +1,15 @@
 services:
 
+    Changeset\Command\HandlerInterface:
+        public: true
+        class: Changeset\Command\Handler
+        arguments: [ '@event_dispatcher']
+
     Changeset\Communication\CommandBusInterface:
         public: true
         class: Changeset\Communication\InMemoryCommandBus
+        calls:
+            - { method: 'setHandler', arguments: [ '@changeset.command_handler' ]}
 
     Changeset\Communication\EventBusInterface:
         public: true

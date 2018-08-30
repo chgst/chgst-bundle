@@ -40,6 +40,7 @@ Set your event repository service for persisting events to data store
 changeset:
     event_repository: '@your.preferred.implementation'
     event_bus: '@your.preferred.event_bus.implementation'
+    command_handler: '@your.preferred.command_handler.implementation'
 
 ```
 
@@ -50,9 +51,4 @@ Wire your command handlers
 
 services:
 
-  AppBundle\Command\Handler\:
-    resource: '%kernel.root_dir%/../src/AppBundle/Command/Handler'
-    public: true
-    autowire: true
-    tags: [ 'changeset.command.handler' ]
 ```

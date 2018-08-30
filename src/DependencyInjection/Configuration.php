@@ -14,14 +14,16 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('changeset');
 
         $rootNode
+            ->addDefaultsIfNotSet()
             ->children()
                 ->scalarNode('event_repository')
-                    ->isRequired()
-                    ->cannotBeEmpty()
+                    ->defaultValue('@Changeset\Event\RepositoryInterface')
                 ->end()
                 ->scalarNode('event_bus')
-                    ->isRequired()
-                    ->cannotBeEmpty()
+                    ->defaultValue('@Changeset\Communication\EventBusInterface')
+                ->end()
+                ->scalarNode('command_handler')
+                    ->defaultValue('@Changeset\Command\HandlerInterface')
                 ->end()
             ->end()
         ;
