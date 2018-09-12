@@ -3,7 +3,7 @@ services:
     Changeset\Command\HandlerInterface:
         public: true
         class: Changeset\Command\Handler
-        arguments: [ '@event_dispatcher']
+        arguments: [ '@event_dispatcher', '@changeset.event_repository']
 
     Changeset\Communication\CommandBusInterface:
         public: true
@@ -16,3 +16,9 @@ services:
         autowire: true
         class: Changeset\Communication\InMemoryEventBus
 
+    Changeset\ChangesetBundle\EventListener\EventAppendSubscriber:
+        public: true
+        autowire: true
+        class: Changeset\ChangesetBundle\EventListener\EventAppendSubscriber
+        tags:
+            - { name: kernel.event_subscriber }
