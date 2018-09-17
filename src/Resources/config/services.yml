@@ -22,3 +22,8 @@ services:
         class: Changeset\ChangesetBundle\EventListener\EventAppendSubscriber
         tags:
             - { name: kernel.event_subscriber }
+
+    Changeset\ChangesetBundle\Command\ReplayStreamCommand:
+        class: Changeset\ChangesetBundle\Command\ReplayStreamCommand
+        arguments: [ "@changeset.event_repository", "@changeset.event_bus" ]
+        tags: [ 'console.command' ]
