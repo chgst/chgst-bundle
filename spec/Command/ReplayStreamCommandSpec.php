@@ -9,6 +9,7 @@ use Changeset\Event\RepositoryInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Formatter\OutputFormatterInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -16,7 +17,7 @@ class ReplayStreamCommandSpec extends ObjectBehavior
 {
     function let(RepositoryInterface $repository, EventBusInterface $eventBus)
     {
-        $this->beConstructedWith($repository, $eventBus);
+        $this->beConstructedWith($repository, $eventBus, 1);
     }
 
     function it_is_initializable()
@@ -31,7 +32,8 @@ class ReplayStreamCommandSpec extends ObjectBehavior
         RepositoryInterface $repository,
         EventBusInterface $eventBus,
         \Iterator $iterator,
-        EventInterface $event
+        EventInterface $event,
+        OutputFormatterInterface $outputFormatter
     )
     {
         $repository->getIterator()->willReturn($iterator);
@@ -40,6 +42,14 @@ class ReplayStreamCommandSpec extends ObjectBehavior
         $iterator->next()->shouldBeCalled();
         $iterator->valid()->shouldBeCalled()->willReturn(true, false);
         $iterator->current()->willReturn($event);
+
+        $output->getFormatter()->willReturn($outputFormatter);
+        $output->writeln(Argument::any())->shouldBeCalled();
+        $output->write(Argument::any())->shouldBeCalled();
+        $output->isDecorated()->shouldBeCalled();
+        $output->getVerbosity()->shouldBeCalled();
+
+        $eventBus->dispatch(Argument::any())->shouldBeCalled();
 
         $this->execute($input, $output);
     }
