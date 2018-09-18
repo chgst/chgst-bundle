@@ -44,11 +44,4 @@ changeset:
 
 ```
 
-Wire your command handlers
-
-```yaml
-#app/config/services.yml
-
-services:
-
-```
+* See [chgst/chgst-bundle-example](https://github.com/chgst/chgst-bundle-example)
