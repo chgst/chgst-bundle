@@ -1,0 +1,29 @@
+services:
+
+    Changeset\Command\HandlerInterface:
+        public: true
+        class: Changeset\Command\Handler
+        arguments: [ '@event_dispatcher', '@changeset.event_repository']
+
+    Changeset\Communication\CommandBusInterface:
+        public: true
+        class: Changeset\Communication\InMemoryCommandBus
+        calls:
+            - { method: 'setHandler', arguments: [ '@changeset.command_handler' ]}
+
+    Changeset\Communication\EventBusInterface:
+        public: true
+        autowire: true
+        class: Changeset\Communication\InMemoryEventBus
+
+    Changeset\ChangesetBundle\EventListener\EventAppendSubscriber:
+        public: true
+        autowire: true
+        class: Changeset\ChangesetBundle\EventListener\EventAppendSubscriber
+        tags:
+            - { name: kernel.event_subscriber }
+
+    Changeset\ChangesetBundle\Command\ReplayStreamCommand:
+        class: Changeset\ChangesetBundle\Command\ReplayStreamCommand
+        arguments: [ "@changeset.event_repository", "@changeset.event_bus" ]
+        tags: [ 'console.command' ]
