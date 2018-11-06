@@ -13,7 +13,11 @@ class ListenerPass implements CompilerPassInterface
     {
         if( ! $container->has(EventBusInterface::class)) return;
 
+        if( ! $container->getParameter('changeset.enable_listeners')) return;
+
         $definition = $container->findDefinition(EventBusInterface::class);
+
+        $definition->addMethodCall('enableListeners');
 
         $taggedServices = $container->findTaggedServiceIds('changeset.event.listener');
 

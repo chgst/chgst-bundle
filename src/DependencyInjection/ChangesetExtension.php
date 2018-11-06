@@ -22,8 +22,19 @@ class ChangesetExtension extends Extension
 
         foreach($config as $key => $id)
         {
-            if(strpos(trim($id), '@') == 0) $id = substr($id, 1);
-            $container->setAlias(sprintf('changeset.%s', $key), $id);
+            if ( ! is_bool($id))
+            {
+                if(strpos(trim($id), '@') == 0) $id = substr($id, 1);
+
+                if ($id)
+                {
+                    $container->setAlias(sprintf('changeset.%s', $key), $id);
+                }
+            }
+            else
+            {
+                $container->setParameter(sprintf('changeset.%s', $key), $id);
+            }
         }
     }
 }

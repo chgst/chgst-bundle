@@ -25,6 +25,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('command_handler')
                     ->defaultValue('@Changeset\Command\HandlerInterface')
                 ->end()
+                ->booleanNode('enable_listeners')
+                    ->defaultFalse()
+                ->end()
             ->end()
         ;
 
