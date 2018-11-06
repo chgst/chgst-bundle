@@ -41,7 +41,17 @@ changeset:
     event_repository: '@your.preferred.implementation'
     event_bus: '@your.preferred.event_bus.implementation'
     command_handler: '@your.preferred.command_handler.implementation'
+    enable_listeners: true
 
+```
+
+Make sure you disable listeners in dev and test env
+
+```yaml
+#app/config/config_dev.yml
+
+changeset:
+    enable_listeners: false
 ```
 
 * See [chgst/chgst-bundle-example](https://github.com/chgst/chgst-bundle-example)
