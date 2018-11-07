@@ -23,8 +23,11 @@ class ListenerPassSpec extends ObjectBehavior
         $builder->has(EventBusInterface::class)->willReturn(false);
         $this->process($builder);
 
+        $builder->getParameter('changeset.enable_listeners')->willReturn(false);
+        $this->process($builder);
 
         $builder->has(EventBusInterface::class)->willReturn(true);
+        $builder->getParameter('changeset.enable_listeners')->willReturn(true);
         $builder->findDefinition(Argument::any())->willReturn($definition);
 
         $services = [ 'someId' => [ ['event' => 'some.event' ]]];
