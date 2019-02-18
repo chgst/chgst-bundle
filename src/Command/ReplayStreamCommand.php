@@ -47,7 +47,6 @@ class ReplayStreamCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->eventBus->disableListeners();
         $output->writeln('<fg=green>[chgst]</> Replaying all events in the event stream');
 
         $progressBar = new ProgressBar($output, $this->batchSize);
