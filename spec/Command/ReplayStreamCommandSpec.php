@@ -49,6 +49,7 @@ class ReplayStreamCommandSpec extends ObjectBehavior
         $output->isDecorated()->shouldBeCalled();
         $output->getVerbosity()->shouldBeCalled();
 
+        $eventBus->disableListeners()->shouldBeCalled();
         $eventBus->dispatch(Argument::any())->shouldBeCalled();
 
         $this->execute($input, $output);
