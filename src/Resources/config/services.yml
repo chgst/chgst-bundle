@@ -1,3 +1,6 @@
+parameters:
+    event_append_subscriber_class: Changeset\ChangesetBundle\EventListener\EventAppendSubscriber
+
 services:
 
     Changeset\Command\HandlerInterface:
@@ -19,7 +22,7 @@ services:
     Changeset\ChangesetBundle\EventListener\EventAppendSubscriber:
         public: true
         autowire: true
-        class: Changeset\ChangesetBundle\EventListener\EventAppendSubscriber
+        class: '%event_append_subscriber_class%'
         tags:
             - { name: kernel.event_subscriber }
 
