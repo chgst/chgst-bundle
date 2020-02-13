@@ -19,7 +19,7 @@ class ProjectorPass implements CompilerPassInterface
 
         foreach ($taggedServices as $id => $tags)
         {
-            $definition->addMethodCall('addProjector', [ new Reference($id) ]);
+            $definition->addMethodCall('addProjector', [ new Reference($id), (isset($tags[0]['priority']) ? $tags[0]['priority'] : 0) ]);
         }
     }
 }
