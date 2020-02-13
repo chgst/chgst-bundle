@@ -11,7 +11,12 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('changeset');
 
-        $rootNode = $treeBuilder->getRootNode();
+        if ( ! method_exists($treeBuilder, 'getRootNode')) {
+            $rootNode = $treeBuilder->root('changeset');
+        }
+        else {
+            $rootNode = $treeBuilder->getRootNode();
+        }
 
         $rootNode
             ->addDefaultsIfNotSet()
