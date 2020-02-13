@@ -1,6 +1,6 @@
 # Symfony bundle for chgst library
 
-<!-- 0.2.0 -->
+<!-- 0.2.1 -->
 
 [![Version](https://img.shields.io/packagist/v/chgst/chgst-bundle.svg?style=flat-square)](https://packagist.org/packages/chgst/chgst-bundle)
 [![Build Status](https://travis-ci.org/chgst/chgst-bundle.svg?branch=develop)](https://travis-ci.org/chgst/chgst-bundle)
