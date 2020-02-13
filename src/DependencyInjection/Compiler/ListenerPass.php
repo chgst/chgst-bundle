@@ -23,7 +23,7 @@ class ListenerPass implements CompilerPassInterface
 
         foreach ($taggedServices as $id => $tags)
         {
-            $definition->addMethodCall('addListener', [ new Reference($id) ]);
+            $definition->addMethodCall('addListener', [ new Reference($id), (isset($tags[0]['priority']) ? $tags[0]['priority'] : 0) ]);
         }
     }
 }

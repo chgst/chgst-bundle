@@ -22,6 +22,7 @@ class ChangesetExtensionSpec extends ObjectBehavior
         $container->setDefinition(Argument::any(), Argument::any())->shouldBeCalled();
         $container->setAlias(Argument::any(), Argument::any())->shouldBeCalled();
         $container->setParameter(Argument::any(), Argument::any())->shouldBeCalled();
+        $container->removeBindings(Argument::any())->shouldBeCalled();
 
         $this->load([ ['event_repository' => '@defined', 'event_bus' => '@also.defined'] ], $container);
     }
