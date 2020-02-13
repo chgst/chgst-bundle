@@ -6,7 +6,7 @@
         "php": "^7.2",
         "symfony/framework-bundle": "~2.3||~3||~4",
         "symfony/security": "~2.3||~3||~4",
-        "chgst/chgst":"^0.2"
+        "chgst/chgst":"^0.2.1"
     },
     "require-dev": {
         "phpspec/phpspec": "^6",
