@@ -8,29 +8,62 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/chgst/chgst-bundle/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/chgst/chgst-bundle/?branch=develop)
 [![License](https://poser.pugx.org/chgst/chgst-bundle/license.svg)](https://packagist.org/packages/chgst/chgst-bundle)
 
+## Before Install
+
+Make sure you have Symfony Security installed:
+
+```bash
+composer require security
+```
+
 ## Installation
+
+Install the `chgst/chgst` first:
+
+```bash
+composer require chgst/chgst
+```
+
+And create default `Changeset\Event\RepositoryInterface` implementation (can be empty for now). Example implementation:
+
+```php
+<?php
+
+namespace App\Changeset;
+
+use Changeset\Event\EventInterface;
+use Changeset\Event\RepositoryInterface;
+
+class ObjectRepository implements RepositoryInterface
+{
+    public function create(): EventInterface
+    {
+    }
+
+    public function append(EventInterface $event)
+    {
+    }
+
+    public function getIterator(): \Iterator
+    {
+    }
+}
+```
+
+Create service from the implementation;
+
+```yaml
+# config/services.yaml
+services:
+    Changeset\Event\RepositoryInterface:
+        class: App\Changeset\ObjectRepository
+```
+
+Finally install the bundle
 
 ```bash
 composer require chgst/chgst-bundle
 ```
-
-```php
-# AppKernel.php
-<?php
-
-class AppKernel extends Kernel
-{
-   public function registerBundles()
-   {
-       $bundles = [
-           // ...
-           new Changeset\ChangesetBundle\ChangesetBundle(),
-           // ...
-       ];
-
-}
-```
-
 
 ## Configuration
 
@@ -40,7 +73,7 @@ Set your event repository service for persisting events to data store
 #app/config/config.yml
 
 changeset:
-    event_repository: '@your.preferred.implementation'
+    event_repository: '@Changeset\Event\RepositoryInterface'
     event_bus: '@your.preferred.event_bus.implementation'
     command_handler: '@your.preferred.command_handler.implementation'
     enable_listeners: true
