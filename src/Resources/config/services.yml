@@ -1,7 +1,12 @@
 parameters:
     event_append_subscriber_class: Changeset\ChangesetBundle\EventListener\EventAppendSubscriber
+    event_repository_class: ~
 
 services:
+
+    Changeset\Event\RepositoryInterface:
+        public: true
+        class: '%event_repository_class%'
 
     Changeset\Command\HandlerInterface:
         public: true
