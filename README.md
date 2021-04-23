@@ -70,7 +70,7 @@ composer require chgst/chgst-bundle
 Set your event repository service for persisting events to data store
 
 ```yaml
-#app/config/config.yml
+# config/services.yaml
 
 changeset:
     event_repository: '@Changeset\Event\RepositoryInterface'
@@ -83,7 +83,7 @@ changeset:
 Make sure you disable listeners in dev and test env
 
 ```yaml
-#app/config/config_dev.yml
+# config/services_(dev|test).yaml
 
 changeset:
     enable_listeners: false
