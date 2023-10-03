@@ -11,22 +11,12 @@ use Symfony\Component\Console\Helper\ProgressBar;
 
 class ReplayStreamCommand extends Command
 {
-    /** @var RepositoryInterface */
-    private $repository;
+    private RepositoryInterface $repository;
 
-    /** @var EventBusInterface */
-    private $eventBus;
+    private EventBusInterface $eventBus;
 
-    /** @var int */
-    private $batchSize = 1000;
+    private int $batchSize = 1000;
 
-    /**
-     * ReplayStreamCommand constructor.
-     *
-     * @param RepositoryInterface $repository
-     * @param EventBusInterface $eventBus
-     * @param int $batchSize
-     */
     public function __construct(RepositoryInterface $repository, EventBusInterface $eventBus, $batchSize = null)
     {
         $this->repository = $repository;
@@ -37,7 +27,7 @@ class ReplayStreamCommand extends Command
         parent::__construct();
     }
 
-    public function configure()
+    public function configure(): void
     {
         $this
             ->setName('replay:stream')
@@ -45,13 +35,13 @@ class ReplayStreamCommand extends Command
         ;
     }
 
-    public function execute(InputInterface $input, OutputInterface $output)
+    public function execute(InputInterface $input, OutputInterface $output): void
     {
         $this->eventBus->disableListeners();
         $output->writeln('<fg=green>[chgst]</> Replaying all events in the event stream');
 
         $progressBar = new ProgressBar($output, $this->batchSize);
-        $progressBar->setRedrawFrequency($this->batchSize / 10);
+        $progressBar->setRedrawFrequency(intval($this->batchSize / 10));
         $progressBar->setBarWidth(100);
         $progressBar->start();
 

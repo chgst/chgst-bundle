@@ -43,11 +43,15 @@ class ReplayStreamCommandSpec extends ObjectBehavior
         $iterator->valid()->shouldBeCalled()->willReturn(true, false);
         $iterator->current()->willReturn($event);
 
+        $output->isDecorated()->willReturn(false);
         $output->getFormatter()->willReturn($outputFormatter);
         $output->writeln(Argument::any())->shouldBeCalled();
         $output->write(Argument::any())->shouldBeCalled();
-        $output->isDecorated()->shouldBeCalled();
         $output->getVerbosity()->shouldBeCalled();
+
+        $outputFormatter->isDecorated()->willReturn(false);
+        $outputFormatter->setDecorated(false)->shouldBeCalled();
+        $outputFormatter->format(Argument::any())->shouldBeCalled();
 
         $eventBus->disableListeners()->shouldBeCalled();
         $eventBus->dispatch(Argument::any())->shouldBeCalled();

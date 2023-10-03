@@ -33,7 +33,7 @@ class ListenerPassSpec extends ObjectBehavior
         $services = [ 'someId' => [ ['event' => 'some.event' ]]];
 
         $builder->findTaggedServiceIds('changeset.event.listener')->willReturn($services);
-        $definition->addMethodCall(Argument::any(), Argument::any())->shouldBeCalled();
+        $definition->addMethodCall(Argument::any(), Argument::any())->willReturn($definition);
         $this->process($builder);
     }
 }

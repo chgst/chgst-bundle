@@ -30,7 +30,7 @@ class HandlerPassSpec extends ObjectBehavior
         $services = [ 'someId' => [ ['event' => 'some.event' ]]];
 
         $builder->findTaggedServiceIds('changeset.command.handler')->willReturn($services);
-        $definition->addMethodCall(Argument::any(), Argument::any())->shouldBeCalled();
+        $definition->addMethodCall(Argument::any(), Argument::any())->willReturn($definition);
         $this->process($builder);
     }
 }

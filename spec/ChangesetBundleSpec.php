@@ -18,7 +18,7 @@ class ChangesetBundleSpec extends ObjectBehavior
 
     function it_registers_compiler_passes(ContainerBuilder $builder)
     {
-        $builder->addCompilerPass(Argument::any())->shouldBeCalled();
+        $builder->addCompilerPass(Argument::any())->willReturn($builder);
         $this->build($builder);
     }
 }

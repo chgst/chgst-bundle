@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Loader;
 
 class ChangesetExtension extends Extension
 {
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration(new Configuration(), $configs);
 

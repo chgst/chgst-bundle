@@ -6,42 +6,40 @@ use Changeset\Common\BlameableInterface;
 use Changeset\Common\TimestampableInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class EventAppendSubscriber implements EventSubscriberInterface
 {
-    /** @var string */
-    protected $username;
 
-    /**
-     * EventAppendSubscriber constructor.
-     *
-     * @param TokenStorageInterface $storage
-     */
-    public function __construct(TokenStorageInterface $storage)
+    protected string $userIdentifier;
+
+    public function __construct(Security $security)
     {
-        if ($storage->getToken() && $storage->getToken()->getUsername())
+        if ($user = $security->getUser())
         {
-            $this->username = $storage->getToken()->getUsername();
+            $this->userIdentifier = $user->getUserIdentifier();
         }
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
-            'changeset.command.handled' => [  [ 'setBlame', 0 ], [ 'setTimestamp', 0 ] ]
+            'changeset.command.handled' => [
+                [ 'setBlame', 0 ],
+                [ 'setTimestamp', 0 ]
+            ]
         ];
     }
 
-    public function setBlame(GenericEvent $event)
+    public function setBlame(GenericEvent $event): void
     {
         if ($event->getSubject() instanceof BlameableInterface)
         {
-            $event->getSubject()->setCreatedBy($this->username);
+            $event->getSubject()->setCreatedBy($this->userIdentifier);
         }
     }
 
-    public function setTimestamp(GenericEvent $event)
+    public function setTimestamp(GenericEvent $event): void
     {
         if ($event->getSubject() instanceof TimestampableInterface)
         {

@@ -8,18 +8,21 @@ use Changeset\Common\TimestampableInterface;
 use Changeset\Event\EventInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class EventAppendSubscriberSpec extends ObjectBehavior
 {
-    function let(TokenStorageInterface $storage, TokenInterface $token)
+    function let(Security $security, UserInterface $user)
     {
-        $storage->getToken()->willReturn($token);
+        $security->getUser()->willReturn($user);
+        $user->getUserIdentifier()->willReturn('some username');
 
-        $this->beConstructedWith($storage);
+        $this->beConstructedWith($security);
     }
 
     function it_is_initializable()
@@ -33,13 +36,11 @@ class EventAppendSubscriberSpec extends ObjectBehavior
         $this->getSubscribedEvents()->shouldHaveCount(1);
     }
 
-    function it_can_setBlame_on_event(GenericEvent $event, BlameableInterface $subject, TokenInterface $token)
+    function it_can_setBlame_on_event(GenericEvent $event, BlameableInterface $subject)
     {
         $event->getSubject()->willReturn($subject);
 
         $subject->setCreatedBy(Argument::any())->shouldBeCalled();
-
-        $token->getUsername()->willReturn('some username');
 
         $this->setBlame($event);
     }

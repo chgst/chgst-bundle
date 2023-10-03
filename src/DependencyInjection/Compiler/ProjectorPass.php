@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class ProjectorPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if( ! $container->has(EventBusInterface::class)) return;
 

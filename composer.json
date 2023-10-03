@@ -3,21 +3,21 @@
     "description": "Symfony bundle for chgst",
     "type": "library",
     "require": {
-        "php": "^8.0",
-        "symfony/framework-bundle": "~4",
-        "symfony/security": "~4",
-        "chgst/chgst":"^0.2.1"
+        "php": "^8.2",
+        "symfony/framework-bundle": "~6",
+        "symfony/security-bundle": "~6",
+        "chgst/chgst":"@dev"
     },
     "require-dev": {
-        "phpspec/phpspec": "^7.0.1",
-        "pdepend/pdepend": "^2.9.1",
+        "phpspec/phpspec": "^7.4",
+        "pdepend/pdepend": "^2.15",
         "phploc/phploc": "^7.0.2",
-        "phpmd/phpmd": "^2.9.1",
+        "phpmd/phpmd": "^2.14.1",
         "sebastian/phpcpd": "^6.0.3",
-        "symfony/templating": "~5",
-        "friends-of-phpspec/phpspec-code-coverage": "^6",
-        "php-coveralls/php-coveralls": "^v2.4.3",
-        "symfony/expression-language": "^v5.2.4"
+        "symfony/templating": "~6",
+        "friends-of-phpspec/phpspec-code-coverage": "^v6.3.0",
+        "php-coveralls/php-coveralls": "^v2.6.0",
+        "symfony/expression-language": "~v6.3.0"
     },
     "license": "MIT",
     "minimum-stability": "stable",
@@ -32,9 +32,8 @@
         }
     },
     "config": {
-        "bin-dir": "bin",
         "platform": {
-            "php": "8.0"
+            "php": "8.2"
         }
     }
 }
