@@ -2,9 +2,8 @@
 
 
 [![Version](https://img.shields.io/packagist/v/chgst/chgst-bundle.svg?style=flat-square)](https://packagist.org/packages/chgst/chgst-bundle)
-[![Build Status](https://travis-ci.org/chgst/chgst-bundle.svg?branch=develop)](https://travis-ci.org/chgst/chgst-bundle)
+[![CircleCI](https://circleci.com/gh/chgst/chgst-bundle.svg?style=shield)](https://circleci.com/gh/chgst/chgst-bundle)
 [![Coverage Status](https://coveralls.io/repos/github/chgst/chgst-bundle/badge.svg?branch=develop)](https://coveralls.io/github/chgst/chgst-bundle?branch=develop)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/chgst/chgst-bundle/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/chgst/chgst-bundle/?branch=develop)
 [![License](https://poser.pugx.org/chgst/chgst-bundle/license.svg)](https://packagist.org/packages/chgst/chgst-bundle)
 
 ## Before Install
@@ -17,49 +16,6 @@ composer require security
 
 ## Installation
 
-Install the `chgst/chgst` first:
-
-```bash
-composer require chgst/chgst
-```
-
-And create default `Chgst\Event\RepositoryInterface` implementation (can be empty for now). Example implementation:
-
-```php
-<?php
-
-namespace App\Chgst;
-
-use Chgst\Event\EventInterface;
-use Chgst\Event\RepositoryInterface;
-
-class ObjectRepository implements RepositoryInterface
-{
-    public function create(): EventInterface
-    {
-    }
-
-    public function append(EventInterface $event)
-    {
-    }
-
-    public function getIterator(): \Iterator
-    {
-    }
-}
-```
-
-Create service from the implementation;
-
-```yaml
-# config/services.yaml
-services:
-    Chgst\Event\RepositoryInterface:
-        class: App\Chgst\ObjectRepository
-```
-
-Finally install the bundle
-
 ```bash
 composer require chgst/chgst-bundle
 ```
@@ -69,22 +25,76 @@ composer require chgst/chgst-bundle
 Set your event repository service for persisting events to data store
 
 ```yaml
-# config/services.yaml
-
+# config/packages/chgst.yaml
 chgst:
-    event_repository: '@Chgst\Event\RepositoryInterface'
-    event_bus: '@your.preferred.event_bus.implementation'
-    command_handler: '@your.preferred.command_handler.implementation'
-    enable_listeners: true
+  enable_listeners: true
 
-```
+# Make sure you disable listeners in test/dev environment
+when@dev:
+  chgst:
+    enable_listeners: false
 
-Make sure you disable listeners in dev and test env
-
-```yaml
-# config/services_(dev|test).yaml
-
-chgst:
+when@test:
+  chgst:
     enable_listeners: false
 ```
 
+Add repository service to your services configuration
+
+```yaml
+# config/services.yaml
+services:
+
+    Chgst\Event\RepositoryInterface:
+        public: true
+        class: Chgst\Event\ObjectRepository
+        arguments: [ '@doctrine_mongodb.odm.document_manager', 'App\Document\DefaultEvent' ] # or '@doctrine.orm.entity_manager'
+```
+
+Create Doctrine model class for your events
+
+```php
+<?php
+// src/Document/DefaultEvent.php
+
+namespace App\Document;
+
+use Chgst\Event\Event;
+
+class DefaultEvent extends Event
+{
+    protected string $id;
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function setId(string $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+}
+```
+
+And add XML mapping
+
+```xml
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
+                    https://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
+
+    <document name="App\Document\DefaultEvent">
+        <id />
+        <field field-name="name" type="string" nullable="false" />
+        <field field-name="aggregateType" type="string" nullable="false" />
+        <field field-name="aggregateId" type="string" nullable="false" />
+        <field field-name="createdAt" type="date" nullable="false" />
+        <field field-name="createdBy" type="string" nullable="false" />
+        <field field-name="payload" type="hash" nullable="false" />
+    </document>
+</doctrine-mongo-mapping>
+```
