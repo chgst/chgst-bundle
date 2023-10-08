@@ -2,7 +2,7 @@
 
 
 [![Version](https://img.shields.io/packagist/v/chgst/chgst-bundle.svg?style=flat-square)](https://packagist.org/packages/chgst/chgst-bundle)
-[![CircleCI](https://circleci.com/gh/chgst/chgst-bundle.svg?style=shield)](https://circleci.com/gh/chgst/chgst-bundle)
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/UiMSDe5Q43N7rRZKowVuq2/KG7zvGbQ5rbm5RXcsiBcaW/tree/develop.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/circleci/UiMSDe5Q43N7rRZKowVuq2/KG7zvGbQ5rbm5RXcsiBcaW/tree/develop)
 [![Coverage Status](https://coveralls.io/repos/github/chgst/chgst-bundle/badge.svg?branch=develop)](https://coveralls.io/github/chgst/chgst-bundle?branch=develop)
 [![License](https://poser.pugx.org/chgst/chgst-bundle/license.svg)](https://packagist.org/packages/chgst/chgst-bundle)
 
