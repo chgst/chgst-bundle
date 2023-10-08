@@ -6,7 +6,7 @@
     "php": "^8.2",
     "symfony/config": "~6",
     "symfony/security-bundle": "~6",
-    "chgst/chgst": "^0.3.0"
+    "chgst/chgst": "^0.3.3"
   },
   "require-dev": {
     "phpspec/phpspec": "^7.4",
