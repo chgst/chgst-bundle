@@ -1,16 +1,16 @@
+extensions:
+    FriendsOfPhpSpec\PhpSpec\CodeCoverage\CodeCoverageExtension:
+        blacklist: [ 'features', 'spec', 'vendor']
+        format:
+            - html
+            - cobertura
+            - clover
+        output:
+            html: build/coverage
+            cobertura: build/logs/cobertura.xml
+            clover: build/logs/clover.xml
+
 suites:
     default:
-        namespace: Changeset\ChangesetBundle
-        psr4_prefix: Changeset\ChangesetBundle
-
-extensions:
-  LeanPHP\PhpSpec\CodeCoverage\CodeCoverageExtension:
-    blacklist: [ 'spec', 'vendor' ]
-    format:
-      - clover
-      - html
-
-    output:
-      clover: build/logs/clover.xml
-      html: build/coverage
-
+        namespace: Chgst\ChgstBundle
+        psr4_prefix: Chgst\ChgstBundle

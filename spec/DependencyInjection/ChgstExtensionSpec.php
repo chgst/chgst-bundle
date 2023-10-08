@@ -1,18 +1,18 @@
 <?php
 
-namespace spec\Changeset\ChangesetBundle\DependencyInjection;
+namespace spec\Chgst\ChgstBundle\DependencyInjection;
 
-use Changeset\ChangesetBundle\DependencyInjection\ChangesetExtension;
+use Chgst\ChgstBundle\DependencyInjection\ChgstExtension;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 
-class ChangesetExtensionSpec extends ObjectBehavior
+class ChgstExtensionSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType(ChangesetExtension::class);
+        $this->shouldHaveType(ChgstExtension::class);
         $this->shouldHaveType(Extension::class);
     }
 

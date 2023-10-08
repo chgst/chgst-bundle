@@ -48,3 +48,5 @@ composer.lock
 
 # Embedded web-server pid file
 /.web-server-pid
+/.docker
+docker-compose.yml

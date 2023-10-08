@@ -1,40 +1,39 @@
 {
-    "name": "chgst/chgst-bundle",
-    "description": "Symfony bundle for chgst",
-    "type": "library",
-    "require": {
-        "php": "^7.2",
-        "symfony/framework-bundle": "~2.3||~3||~4",
-        "symfony/security": "~2.3||~3||~4",
-        "chgst/chgst":"^0.2.1"
-    },
-    "require-dev": {
-        "phpspec/phpspec": "^6",
-        "pdepend/pdepend": "^2.5",
-        "phploc/phploc": "^4.0",
-        "phpmd/phpmd": "^2.6",
-        "sebastian/phpcpd": "^4.0",
-        "symfony/templating": "~2.3||~3||~4",
-        "friends-of-phpspec/phpspec-code-coverage": "^4.3",
-        "php-coveralls/php-coveralls": "^2.2",
-        "symfony/expression-language": "~2.3||~3||~4"
-    },
-    "license": "MIT",
-    "minimum-stability": "stable",
-    "autoload": {
-        "psr-4": {
-            "Changeset\\ChangesetBundle\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "spec/"
-        }
-    },
-    "config": {
-        "bin-dir": "bin",
-        "platform": {
-            "php": "7.2"
-        }
+  "name": "chgst/chgst-bundle",
+  "description": "Symfony bundle for chgst",
+  "type": "library",
+  "require": {
+    "php": "^8.2",
+    "symfony/config": "~6",
+    "symfony/security-bundle": "~6",
+    "chgst/chgst": "^0.3.3"
+  },
+  "require-dev": {
+    "phpspec/phpspec": "^7.4",
+    "pdepend/pdepend": "^2.15",
+    "phploc/phploc": "^7.0.2",
+    "phpmd/phpmd": "^2.14.1",
+    "sebastian/phpcpd": "^6.0.3",
+    "symfony/templating": "~6",
+    "friends-of-phpspec/phpspec-code-coverage": "^v6.3.0",
+    "php-coveralls/php-coveralls": "^v2.6.0",
+    "symfony/expression-language": "~v6.3.0"
+  },
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Chgst\\ChgstBundle\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "spec\\Chgst\\ChgstBundle\\": "spec/"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "8.2"
+    }
+  }
 }

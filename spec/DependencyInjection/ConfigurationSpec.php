@@ -1,10 +1,9 @@
 <?php
 
-namespace spec\Changeset\ChangesetBundle\DependencyInjection;
+namespace spec\Chgst\ChgstBundle\DependencyInjection;
 
-use Changeset\ChangesetBundle\DependencyInjection\Configuration;
+use Chgst\ChgstBundle\DependencyInjection\Configuration;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 

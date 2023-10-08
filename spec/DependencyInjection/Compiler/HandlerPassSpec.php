@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\Changeset\ChangesetBundle\DependencyInjection\Compiler;
+namespace spec\Chgst\ChgstBundle\DependencyInjection\Compiler;
 
-use Changeset\ChangesetBundle\DependencyInjection\Compiler\HandlerPass;
-use Changeset\Communication\CommandBusInterface;
+use Chgst\ChgstBundle\DependencyInjection\Compiler\HandlerPass;
+use Chgst\Communication\CommandBusInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -29,8 +29,8 @@ class HandlerPassSpec extends ObjectBehavior
 
         $services = [ 'someId' => [ ['event' => 'some.event' ]]];
 
-        $builder->findTaggedServiceIds('changeset.command.handler')->willReturn($services);
-        $definition->addMethodCall(Argument::any(), Argument::any())->shouldBeCalled();
+        $builder->findTaggedServiceIds('Chgst.command.handler')->willReturn($services);
+        $definition->addMethodCall(Argument::any(), Argument::any())->willReturn($definition);
         $this->process($builder);
     }
 }

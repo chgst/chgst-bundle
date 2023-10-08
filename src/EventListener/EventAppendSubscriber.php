@@ -1,47 +1,44 @@
 <?php
 
-namespace Changeset\ChangesetBundle\EventListener;
+namespace Chgst\ChgstBundle\EventListener;
 
-use Changeset\Common\BlameableInterface;
-use Changeset\Common\TimestampableInterface;
+use Chgst\Common\BlameableInterface;
+use Chgst\Common\TimestampableInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class EventAppendSubscriber implements EventSubscriberInterface
 {
-    /** @var string */
-    protected $username;
 
-    /**
-     * EventAppendSubscriber constructor.
-     *
-     * @param TokenStorageInterface $storage
-     */
-    public function __construct(TokenStorageInterface $storage)
+    protected Security $security;
+
+    public function __construct(Security $security)
     {
-        if ($storage->getToken() && $storage->getToken()->getUsername())
-        {
-            $this->username = $storage->getToken()->getUsername();
-        }
+        $this->security = $security;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
-            'changeset.command.handled' => [  [ 'setBlame', 0 ], [ 'setTimestamp', 0 ] ]
+            'chgst.command.handled' => [
+                [ 'setBlame', 0 ],
+                [ 'setTimestamp', 0 ]
+            ]
         ];
     }
 
-    public function setBlame(GenericEvent $event)
+    public function setBlame(GenericEvent $event): void
     {
-        if ($event->getSubject() instanceof BlameableInterface)
+        $user = $this->security->getUser();
+
+        if ($user && $event->getSubject() instanceof BlameableInterface)
         {
-            $event->getSubject()->setCreatedBy($this->username);
+            $event->getSubject()->setCreatedBy($user->getUserIdentifier());
         }
     }
 
-    public function setTimestamp(GenericEvent $event)
+    public function setTimestamp(GenericEvent $event): void
     {
         if ($event->getSubject() instanceof TimestampableInterface)
         {
