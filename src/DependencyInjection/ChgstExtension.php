@@ -1,13 +1,13 @@
 <?php
 
-namespace Changeset\ChangesetBundle\DependencyInjection;
+namespace Chgst\ChgstBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-class ChangesetExtension extends Extension
+class ChgstExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -28,12 +28,12 @@ class ChangesetExtension extends Extension
 
                 if ($id)
                 {
-                    $container->setAlias(sprintf('changeset.%s', $key), $id);
+                    $container->setAlias(sprintf('Chgst.%s', $key), $id);
                 }
             }
             else
             {
-                $container->setParameter(sprintf('changeset.%s', $key), $id);
+                $container->setParameter(sprintf('Chgst.%s', $key), $id);
             }
         }
     }

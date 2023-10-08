@@ -1,6 +1,5 @@
 # Symfony bundle for chgst library
 
-<!-- 0.2.1 -->
 
 [![Version](https://img.shields.io/packagist/v/chgst/chgst-bundle.svg?style=flat-square)](https://packagist.org/packages/chgst/chgst-bundle)
 [![Build Status](https://travis-ci.org/chgst/chgst-bundle.svg?branch=develop)](https://travis-ci.org/chgst/chgst-bundle)
@@ -24,15 +23,15 @@ Install the `chgst/chgst` first:
 composer require chgst/chgst
 ```
 
-And create default `Changeset\Event\RepositoryInterface` implementation (can be empty for now). Example implementation:
+And create default `Chgst\Event\RepositoryInterface` implementation (can be empty for now). Example implementation:
 
 ```php
 <?php
 
-namespace App\Changeset;
+namespace App\Chgst;
 
-use Changeset\Event\EventInterface;
-use Changeset\Event\RepositoryInterface;
+use Chgst\Event\EventInterface;
+use Chgst\Event\RepositoryInterface;
 
 class ObjectRepository implements RepositoryInterface
 {
@@ -55,8 +54,8 @@ Create service from the implementation;
 ```yaml
 # config/services.yaml
 services:
-    Changeset\Event\RepositoryInterface:
-        class: App\Changeset\ObjectRepository
+    Chgst\Event\RepositoryInterface:
+        class: App\Chgst\ObjectRepository
 ```
 
 Finally install the bundle
@@ -72,8 +71,8 @@ Set your event repository service for persisting events to data store
 ```yaml
 # config/services.yaml
 
-changeset:
-    event_repository: '@Changeset\Event\RepositoryInterface'
+chgst:
+    event_repository: '@Chgst\Event\RepositoryInterface'
     event_bus: '@your.preferred.event_bus.implementation'
     command_handler: '@your.preferred.command_handler.implementation'
     enable_listeners: true
@@ -85,10 +84,7 @@ Make sure you disable listeners in dev and test env
 ```yaml
 # config/services_(dev|test).yaml
 
-changeset:
+chgst:
     enable_listeners: false
 ```
-
-* See [chgst/chgst-bundle-example](https://github.com/chgst/chgst-bundle-example)
-
 

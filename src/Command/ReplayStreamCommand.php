@@ -1,9 +1,9 @@
 <?php
 
-namespace Changeset\ChangesetBundle\Command;
+namespace Chgst\ChgstBundle\Command;
 
-use Changeset\Communication\EventBusInterface;
-use Changeset\Event\RepositoryInterface;
+use Chgst\Communication\EventBusInterface;
+use Chgst\Event\RepositoryInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\Changeset\ChangesetBundle\Command;
+namespace spec\Chgst\ChgstBundle\Command;
 
-use Changeset\ChangesetBundle\Command\ReplayStreamCommand;
-use Changeset\Communication\EventBusInterface;
-use Changeset\Event\EventInterface;
-use Changeset\Event\RepositoryInterface;
+use Chgst\ChgstBundle\Command\ReplayStreamCommand;
+use Chgst\Communication\EventBusInterface;
+use Chgst\Event\EventInterface;
+use Chgst\Event\RepositoryInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\Console\Command\Command;

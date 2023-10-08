@@ -1,8 +1,8 @@
 <?php
 
-namespace Changeset\ChangesetBundle\DependencyInjection\Compiler;
+namespace Chgst\ChgstBundle\DependencyInjection\Compiler;
 
-use Changeset\Communication\EventBusInterface;
+use Chgst\Communication\EventBusInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -15,7 +15,7 @@ class ProjectorPass implements CompilerPassInterface
 
         $definition = $container->findDefinition(EventBusInterface::class);
 
-        $taggedServices = $container->findTaggedServiceIds('changeset.event.projector');
+        $taggedServices = $container->findTaggedServiceIds('Chgst.event.projector');
 
         foreach ($taggedServices as $id => $tags)
         {

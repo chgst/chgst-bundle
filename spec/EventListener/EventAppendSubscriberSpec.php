@@ -1,18 +1,15 @@
 <?php
 
-namespace spec\Changeset\ChangesetBundle\EventListener;
+namespace spec\Chgst\ChgstBundle\EventListener;
 
-use Changeset\ChangesetBundle\EventListener\EventAppendSubscriber;
-use Changeset\Common\BlameableInterface;
-use Changeset\Common\TimestampableInterface;
-use Changeset\Event\EventInterface;
+use Chgst\ChgstBundle\EventListener\EventAppendSubscriber;
+use Chgst\Common\BlameableInterface;
+use Chgst\Common\TimestampableInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class EventAppendSubscriberSpec extends ObjectBehavior

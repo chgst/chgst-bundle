@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\Changeset\ChangesetBundle\DependencyInjection\Compiler;
+namespace spec\Chgst\ChgstBundle\DependencyInjection\Compiler;
 
-use Changeset\ChangesetBundle\DependencyInjection\Compiler\ProjectorPass;
-use Changeset\Communication\EventBusInterface;
+use Chgst\ChgstBundle\DependencyInjection\Compiler\ProjectorPass;
+use Chgst\Communication\EventBusInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -29,7 +29,7 @@ class ProjectorPassSpec extends ObjectBehavior
 
         $services = [ 'someId' => [ ['event' => 'some.event' ]]];
 
-        $builder->findTaggedServiceIds('changeset.event.projector')->willReturn($services);
+        $builder->findTaggedServiceIds('Chgst.event.projector')->willReturn($services);
         $definition->addMethodCall(Argument::any(), Argument::any())->willReturn($definition);
         $this->process($builder);
     }

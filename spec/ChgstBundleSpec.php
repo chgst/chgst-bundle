@@ -1,18 +1,19 @@
 <?php
 
-namespace spec\Changeset\ChangesetBundle;
+namespace spec\Chgst\ChgstBundle;
 
-use Changeset\ChangesetBundle\ChangesetBundle;
+use Chgst\ChgstBundle\ChgstBundle;
+use Chgst\ChgstBundle\DependencyInjection\ChgstExtension;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class ChangesetBundleSpec extends ObjectBehavior
+class ChgstBundleSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType(ChangesetBundle::class);
+        $this->shouldHaveType(ChgstBundle::class);
         $this->shouldHaveType(Bundle::class);
     }
 
@@ -20,5 +21,10 @@ class ChangesetBundleSpec extends ObjectBehavior
     {
         $builder->addCompilerPass(Argument::any())->willReturn($builder);
         $this->build($builder);
+    }
+
+    function it_returns_extension()
+    {
+        $this->getContainerExtension()->shouldHaveType(ChgstExtension::class);
     }
 }

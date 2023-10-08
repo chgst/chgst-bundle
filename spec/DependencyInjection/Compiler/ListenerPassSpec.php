@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\Changeset\ChangesetBundle\DependencyInjection\Compiler;
+namespace spec\Chgst\ChgstBundle\DependencyInjection\Compiler;
 
-use Changeset\ChangesetBundle\DependencyInjection\Compiler\ListenerPass;
-use Changeset\Communication\EventBusInterface;
+use Chgst\ChgstBundle\DependencyInjection\Compiler\ListenerPass;
+use Chgst\Communication\EventBusInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -23,16 +23,16 @@ class ListenerPassSpec extends ObjectBehavior
         $builder->has(EventBusInterface::class)->willReturn(false);
         $this->process($builder);
 
-        $builder->getParameter('changeset.enable_listeners')->willReturn(false);
+        $builder->getParameter('Chgst.enable_listeners')->willReturn(false);
         $this->process($builder);
 
         $builder->has(EventBusInterface::class)->willReturn(true);
-        $builder->getParameter('changeset.enable_listeners')->willReturn(true);
+        $builder->getParameter('Chgst.enable_listeners')->willReturn(true);
         $builder->findDefinition(Argument::any())->willReturn($definition);
 
         $services = [ 'someId' => [ ['event' => 'some.event' ]]];
 
-        $builder->findTaggedServiceIds('changeset.event.listener')->willReturn($services);
+        $builder->findTaggedServiceIds('Chgst.event.listener')->willReturn($services);
         $definition->addMethodCall(Argument::any(), Argument::any())->willReturn($definition);
         $this->process($builder);
     }

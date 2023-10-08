@@ -1,32 +1,33 @@
 parameters:
-    event_append_subscriber_class: Changeset\ChangesetBundle\EventListener\EventAppendSubscriber
+    event_append_subscriber_class: Chgst\ChgstBundle\EventListener\EventAppendSubscriber
 
 services:
 
-    Changeset\Command\HandlerInterface:
+    Chgst\Command\HandlerInterface:
         public: true
-        class: Changeset\Command\Handler
-        arguments: [ '@event_dispatcher', '@changeset.event_repository']
+        class: Chgst\Command\Handler
+        arguments: [ '@event_dispatcher', '@Chgst\Event\RepositoryInterface']
 
-    Changeset\Communication\CommandBusInterface:
+    Chgst\Communication\CommandBusInterface:
         public: true
-        class: Changeset\Communication\InMemoryCommandBus
+        class: Chgst\Communication\InMemoryCommandBus
         calls:
-            - { method: 'setHandler', arguments: [ '@changeset.command_handler' ]}
+            - { method: 'setHandler', arguments: [ '@Chgst\Command\HandlerInterface' ]}
 
-    Changeset\Communication\EventBusInterface:
+    Chgst\Communication\EventBusInterface:
         public: true
         autowire: true
-        class: Changeset\Communication\InMemoryEventBus
+        class: Chgst\Communication\InMemoryEventBus
 
-    Changeset\ChangesetBundle\EventListener\EventAppendSubscriber:
+    Chgst\ChgstBundle\EventListener\EventAppendSubscriber:
         public: true
         autowire: true
         class: '%event_append_subscriber_class%'
         tags:
             - { name: kernel.event_subscriber }
 
-    Changeset\ChangesetBundle\Command\ReplayStreamCommand:
-        class: Changeset\ChangesetBundle\Command\ReplayStreamCommand
-        arguments: [ "@changeset.event_repository", "@changeset.event_bus" ]
+    Chgst\ChgstBundle\Command\ReplayStreamCommand:
+        class: Chgst\ChgstBundle\Command\ReplayStreamCommand
+        arguments: ['@Chgst\Event\RepositoryInterface', '@Chgst\Communication\EventBusInterface']
+
         tags: [ 'console.command' ]
