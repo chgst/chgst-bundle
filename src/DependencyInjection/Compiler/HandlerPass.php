@@ -15,7 +15,7 @@ class HandlerPass implements CompilerPassInterface
 
         $definition = $container->findDefinition(CommandBusInterface::class);
 
-        $definition->addMethodCall('setEventBus', [ new Reference('Chgst.event_bus' )]);
-        $definition->addMethodCall('setHandler', [ new Reference('Chgst.command_handler' )]);
+        $definition->addMethodCall('setEventBus', [ new Reference('chgst.event_bus' )]);
+        $definition->addMethodCall('setHandler', [ new Reference('chgst.command_handler' )]);
     }
 }

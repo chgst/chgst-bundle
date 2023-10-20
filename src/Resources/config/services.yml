@@ -29,5 +29,4 @@ services:
     Chgst\ChgstBundle\Command\ReplayStreamCommand:
         class: Chgst\ChgstBundle\Command\ReplayStreamCommand
         arguments: ['@Chgst\Event\RepositoryInterface', '@Chgst\Communication\EventBusInterface']
-
         tags: [ 'console.command' ]
