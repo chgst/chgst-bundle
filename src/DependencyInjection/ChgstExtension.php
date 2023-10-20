@@ -28,12 +28,12 @@ class ChgstExtension extends Extension
 
                 if ($id)
                 {
-                    $container->setAlias(sprintf('Chgst.%s', $key), $id);
+                    $container->setAlias(sprintf('chgst.%s', $key), $id);
                 }
             }
             else
             {
-                $container->setParameter(sprintf('Chgst.%s', $key), $id);
+                $container->setParameter(sprintf('chgst.%s', $key), $id);
             }
         }
     }

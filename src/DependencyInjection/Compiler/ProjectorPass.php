@@ -15,7 +15,7 @@ class ProjectorPass implements CompilerPassInterface
 
         $definition = $container->findDefinition(EventBusInterface::class);
 
-        $taggedServices = $container->findTaggedServiceIds('Chgst.event.projector');
+        $taggedServices = $container->findTaggedServiceIds('chgst.event.projector');
 
         foreach ($taggedServices as $id => $tags)
         {

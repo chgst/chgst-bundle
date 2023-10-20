@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.3.1 created on 2023-10-20
+
+* `28dcdda` update case in service tags (Janusz Slota)
+* `ba52520` clean up (Janusz Slota)
+
 ## Version 0.3.0 created on 2023-10-08
 
 * `bea2bdd` updates badge (Janusz Slota)

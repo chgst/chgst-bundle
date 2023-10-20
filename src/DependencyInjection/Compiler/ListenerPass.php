@@ -13,13 +13,13 @@ class ListenerPass implements CompilerPassInterface
     {
         if( ! $container->has(EventBusInterface::class)) return;
 
-        if( ! $container->getParameter('Chgst.enable_listeners')) return;
+        if( ! $container->getParameter('chgst.enable_listeners')) return;
 
         $definition = $container->findDefinition(EventBusInterface::class);
 
         $definition->addMethodCall('enableListeners');
 
-        $taggedServices = $container->findTaggedServiceIds('Chgst.event.listener');
+        $taggedServices = $container->findTaggedServiceIds('chgst.event.listener');
 
         foreach ($taggedServices as $id => $tags)
         {
