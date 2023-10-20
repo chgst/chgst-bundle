@@ -29,7 +29,7 @@ class HandlerPassSpec extends ObjectBehavior
 
         $services = [ 'someId' => [ ['event' => 'some.event' ]]];
 
-        $builder->findTaggedServiceIds('Chgst.command.handler')->willReturn($services);
+        $builder->findTaggedServiceIds('chgst.command.handler')->willReturn($services);
         $definition->addMethodCall(Argument::any(), Argument::any())->willReturn($definition);
         $this->process($builder);
     }
