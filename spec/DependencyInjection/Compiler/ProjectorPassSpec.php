@@ -29,7 +29,7 @@ class ProjectorPassSpec extends ObjectBehavior
 
         $services = [ 'someId' => [ ['event' => 'some.event' ]]];
 
-        $builder->findTaggedServiceIds('Chgst.event.projector')->willReturn($services);
+        $builder->findTaggedServiceIds('chgst.event.projector')->willReturn($services);
         $definition->addMethodCall(Argument::any(), Argument::any())->willReturn($definition);
         $this->process($builder);
     }

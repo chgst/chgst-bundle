@@ -23,16 +23,16 @@ class ListenerPassSpec extends ObjectBehavior
         $builder->has(EventBusInterface::class)->willReturn(false);
         $this->process($builder);
 
-        $builder->getParameter('Chgst.enable_listeners')->willReturn(false);
+        $builder->getParameter('chgst.enable_listeners')->willReturn(false);
         $this->process($builder);
 
         $builder->has(EventBusInterface::class)->willReturn(true);
-        $builder->getParameter('Chgst.enable_listeners')->willReturn(true);
+        $builder->getParameter('chgst.enable_listeners')->willReturn(true);
         $builder->findDefinition(Argument::any())->willReturn($definition);
 
         $services = [ 'someId' => [ ['event' => 'some.event' ]]];
 
-        $builder->findTaggedServiceIds('Chgst.event.listener')->willReturn($services);
+        $builder->findTaggedServiceIds('chgst.event.listener')->willReturn($services);
         $definition->addMethodCall(Argument::any(), Argument::any())->willReturn($definition);
         $this->process($builder);
     }
