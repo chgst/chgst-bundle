@@ -3,6 +3,8 @@ parameters:
 
 services:
 
+    Chgst\Event\RepositoryInterface: ~
+
     Chgst\Command\HandlerInterface:
         public: true
         class: Chgst\Command\Handler
