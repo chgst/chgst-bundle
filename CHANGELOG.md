@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.3.3 created on 2023-10-21
+
+* `dcec42c` default implementation (Janusz Slota)
+
 ## Version 0.3.2 created on 2023-10-20
 
 * `9ac3154` fixes tests (Janusz Slota)
