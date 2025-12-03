@@ -9,12 +9,12 @@
     "chgst/chgst": "^0.3.3"
   },
   "require-dev": {
-    "phpspec/phpspec": "^7.4",
+    "phpspec/phpspec": "^8.0.0",
     "pdepend/pdepend": "^2.15",
     "phploc/phploc": "^7.0.2",
     "phpmd/phpmd": "^2.14.1",
     "sebastian/phpcpd": "^6.0.3",
-    "friends-of-phpspec/phpspec-code-coverage": "^v6.3.0",
+    "friends-of-phpspec/phpspec-code-coverage": "^v7.0.0",
     "php-coveralls/php-coveralls": "^v2.6.0",
     "symfony/expression-language": "^7.0"
   },
