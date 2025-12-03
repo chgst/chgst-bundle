@@ -11,6 +11,8 @@ use Symfony\Component\Console\Helper\ProgressBar;
 
 class ReplayStreamCommand extends Command
 {
+    protected static $defaultName = 'replay:stream';
+
     private RepositoryInterface $repository;
 
     private EventBusInterface $eventBus;
@@ -30,12 +32,11 @@ class ReplayStreamCommand extends Command
     public function configure(): void
     {
         $this
-            ->setName('replay:stream')
             ->setDescription('Replays events for event store to trigger projectors')
         ;
     }
 
-    public function execute(InputInterface $input, OutputInterface $output): void
+    public function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->eventBus->disableListeners();
         $output->writeln('<fg=green>[chgst]</> Replaying all events in the event stream');
@@ -67,5 +68,7 @@ class ReplayStreamCommand extends Command
         }
 
         $output->writeln(sprintf(' processed %d items', $totalCounter));
+
+        return Command::SUCCESS;
     }
 }
