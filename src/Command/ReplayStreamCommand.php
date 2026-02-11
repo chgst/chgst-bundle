@@ -4,13 +4,16 @@ namespace Chgst\ChgstBundle\Command;
 
 use Chgst\Communication\EventBusInterface;
 use Chgst\Event\RepositoryInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\ProgressBar;
 
+#[AsCommand(name: 'replay:stream', description: 'Replays events for event store to trigger projectors')]
 class ReplayStreamCommand extends Command
 {
+
     private RepositoryInterface $repository;
 
     private EventBusInterface $eventBus;
@@ -27,15 +30,7 @@ class ReplayStreamCommand extends Command
         parent::__construct();
     }
 
-    public function configure(): void
-    {
-        $this
-            ->setName('replay:stream')
-            ->setDescription('Replays events for event store to trigger projectors')
-        ;
-    }
-
-    public function execute(InputInterface $input, OutputInterface $output): void
+    public function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->eventBus->disableListeners();
         $output->writeln('<fg=green>[chgst]</> Replaying all events in the event stream');
@@ -67,5 +62,7 @@ class ReplayStreamCommand extends Command
         }
 
         $output->writeln(sprintf(' processed %d items', $totalCounter));
+
+        return Command::SUCCESS;
     }
 }

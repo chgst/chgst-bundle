@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.7.0 created on 2026-02-11
+
+* `08adb71` upgraded to Symfony 7 (Janusz Slota)
+* `8e2e677` ci updates (Janusz Slota)
+* `b411de1` updates other deps (Janusz Slota)
+* `5d5cf36` Allow PHP 8+ and Symfony 7 (Janusz Slota)
+
 ## Version 0.3.3 created on 2023-10-21
 
 * `dcec42c` default implementation (Janusz Slota)
