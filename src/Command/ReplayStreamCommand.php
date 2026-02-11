@@ -4,14 +4,15 @@ namespace Chgst\ChgstBundle\Command;
 
 use Chgst\Communication\EventBusInterface;
 use Chgst\Event\RepositoryInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\ProgressBar;
 
+#[AsCommand(name: 'replay:stream', description: 'Replays events for event store to trigger projectors')]
 class ReplayStreamCommand extends Command
 {
-    protected static $defaultName = 'replay:stream';
 
     private RepositoryInterface $repository;
 
@@ -27,13 +28,6 @@ class ReplayStreamCommand extends Command
         if($batchSize) $this->batchSize = $batchSize;
 
         parent::__construct();
-    }
-
-    public function configure(): void
-    {
-        $this
-            ->setDescription('Replays events for event store to trigger projectors')
-        ;
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int

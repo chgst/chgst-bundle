@@ -17,7 +17,7 @@ composer require security
 ## Installation
 
 ```bash
-composer require chgst/chgst-bundle
+composer require chgst/chgst-bundle chgst/persistence-doctrine 
 ```
 
 ## Configuration
@@ -45,10 +45,17 @@ Add repository service to your services configuration
 # config/services.yaml
 services:
 
+    # For ORM 
     Chgst\Event\RepositoryInterface:
         public: true
         class: Chgst\Event\ObjectRepository
-        arguments: [ '@doctrine_mongodb.odm.document_manager', 'App\Document\DefaultEvent' ] # or '@doctrine.orm.entity_manager'
+        arguments: [ '@doctrine.orm.entity_manager', 'App\Entity\DefaultEvent' ]
+
+    # For MongoDB ODM
+    Chgst\Event\RepositoryInterface:
+        public: true
+        class: Chgst\Event\ObjectRepository
+        arguments: [ '@doctrine_mongodb.odm.document_manager', 'App\Document\DefaultEvent' ]
 ```
 
 Create Doctrine model class for your events
